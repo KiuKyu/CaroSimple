@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h3>Caro Game Simple</h3>
+    <p id="carogame"/>
+    <input type="button" value="Change Value" onclick="changeValue()">
+</body>
+<script>
+    let b = document.getElementById('carogame');
+
+    let board = [];
+    let data = '';
+    for (let i = 0; i < 5; i++) {
+        board[i] = [0, 0, 0, 0, 0]; // i chạy từ 0 -> 4 . 5 lần lặp . mỗi lần mảng board sẽ có thêm 1 mảng con
+    }
+    for (let i = 0; i < 5; i++) {
+            data += '<br>'; // sau khi kết thúc 1 vòng lặp j thì sẽ check đk, nếu đk hợp lệ thì xuống dòng
+            for (let j = 0; j < 5; j++) { // nested loop . vòng lặp j bên trong sẽ in ra 1 dòng từ [i][j]
+                data += board[i][j] + '&nbsp;&nbsp;&nbsp;&nbsp;';
+            }
+    }
+    data += "<br/><br/><input type='button' value='Change Value' onclick='changeValue()'>"
+    b.innerHTML = data;
+
+    function changeValue() {
+        let axisX = prompt("X: ");
+        let axisY = prompt("Y: "); // nhập tọa độ thực chất là nhập index của mảng 2 chiều
+        data = ""; // xóa dữ liệu của bàn cờ từ trước
+        board[axisX][axisY] = "x"; // thay giá trị 0 = x ở tọa độ đã nhập (mảng 2 chiều)
+        for (let i = 0; i < 5; i++) {
+            data += "<br/>";
+            for (let j = 0; j < 5; j++) {
+                data += board[i][j] + "&nbsp;&nbsp;&nbsp;&nbsp;"; // load lại bàn cờ (với dữ liệu mới)
+            }
+        }
+        data += "<br/><br/><input type='button' value='Change Value' onclick='changeValue()'>"
+        b.innerHTML = "<hr/>" + data;
+    }
+</script>
+</html>
